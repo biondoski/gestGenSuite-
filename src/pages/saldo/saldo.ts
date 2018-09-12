@@ -7,6 +7,8 @@ import {MenuController, NavController, NavParams} from 'ionic-angular';
 })
 export class SaldoPage {
 
+  public info;
+
   constructor(public navCtrl: NavController, public menuCtrl: MenuController, navParams: NavParams) {
 
     this.info = navParams.data;
