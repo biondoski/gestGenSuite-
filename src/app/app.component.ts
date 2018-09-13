@@ -46,10 +46,24 @@ export class MyApp {
 
   openPage(page) {
 
-    if(page.title==="Saldo" || page.title==="Inserimento" || page.title==="Statistiche"){
+    let retrievedObj = JSON.parse(localStorage.getItem('storedData'));
+    console.log(retrievedObj.tipo);
 
+    if((page.title==="Saldo" || page.title==="Statistiche") && (retrievedObj.tipo===false)){
 
+      console.log(retrievedObj);
 
+      let alert = this.alertCtrl.create({
+        title: 'Accesso Negato',
+        subTitle: 'Non hai i permessi per consultare questa pagina!',
+        buttons: ['OK']
+      });
+      alert.present();
+
+      this.app.getRootNav().setRoot(HomePage);
+
+    }else{
+      this.nav.setRoot(page.component);
     }
 
     if(page.title==="Log out"){

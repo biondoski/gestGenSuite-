@@ -33,11 +33,11 @@ export class LoginPage {
 
     this.http.post('http://127.0.0.1:3000/loginApp',data, headers)
       .subscribe(data => {
-          console.log(data);
           let a = JSON.stringify(data);
           let b = JSON.parse(a);
           if(b.errore===false){
-            this.navCtrl.setRoot(HomePage,{'info':b.id});
+            window.localStorage.setItem('storedData', JSON.stringify(b.id));
+            this.navCtrl.setRoot(HomePage);
           }
           else if(b.errore===true){
             let alert = this.alertCtrl.create({

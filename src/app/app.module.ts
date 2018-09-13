@@ -1,3 +1,5 @@
+import { FormsModule } from '@angular/forms';
+import { MbscModule } from '@mobiscroll/angular';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
@@ -12,6 +14,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { LoginPage } from "../pages/login/login";
 import { StatistichePage } from "../pages/statistiche/statistiche";
 import { HttpClientModule } from "@angular/common/http";
+import {Camera} from "@ionic-native/camera";
 
 @NgModule({
   declarations: [
@@ -23,6 +26,8 @@ import { HttpClientModule } from "@angular/common/http";
     StatistichePage
   ],
   imports: [
+    FormsModule,
+    MbscModule,
     BrowserModule,
     HttpClientModule,
     IonicModule.forRoot(MyApp),
@@ -39,6 +44,7 @@ import { HttpClientModule } from "@angular/common/http";
   providers: [
     StatusBar,
     SplashScreen,
+    Camera,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

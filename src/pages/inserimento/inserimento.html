@@ -7,7 +7,67 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding class="no-scroll">
+  <div id="loginNotificationsCenter-container1" class="jumbotron">
+    <h6 id="loginNotificationsCenter-heading1" style="color:#000000;text-align:center;">Inserisci i dati per il tuo saldo giornaliero</h6>
+  </div>
+
+  <ion-item>
+    <ion-label color="primary">Tipo</ion-label>
+    <ion-select [(ngModel)]="tipo" placeholder="Seleziona">
+      <ion-option value="incasso">INCASSO</ion-option>
+      <ion-option value="pagamento">PAGAMENTO</ion-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label color="primary">Modalità</ion-label>
+    <ion-select [(ngModel)]="modalita"> placeholder="Seleziona"
+      <ion-option value="bonifico">BONIFICO</ion-option>
+      <ion-option value="carta">CARTA DI CREDITO</ion-option>
+      <ion-option value="contanti">CONTANTI</ion-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label color="primary">Cliente</ion-label>
+    <ion-select [(ngModel)]="cliente" placeholder="Seleziona">
+      <ion-option value="nessuno">NESSUNO</ion-option>
+      <ion-option value="food">FOOD</ion-option>
+      <ion-option value="beverage">BEVERAGE</ion-option>
+      <ion-option value="chiusura">CHIUSURA CASSA</ion-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label color="primary">Decrizione</ion-label>
+    <ion-textarea placeholder="Inserire Descrizione" [(ngModel)]="descrizione"></ion-textarea>
+  </ion-item>
+
+  <ion-item>
+    <ion-label color="primary">Data</ion-label>
+    <ion-datetime displayFormat="DD-MM-YYYY HH:mm" [(ngModel)]="today"></ion-datetime>
+  </ion-item>
+
+  <ion-row >
+  <mbsc-form [options]="formSettings" class="md-stepper-np">
+      <div class="mbsc-form-group-inset">
+        <div>
+          <input type="number" data-role="stepper" [(ngModel)]="price" min="10" max="120" step="10" (click)="mbscNumpad.instance.show()" readonly />
+        </div>
+      </div>
+      <div class="md-numpad" mbsc-numpad [mbsc-options]="numpadSettings" [(ngModel)]="price" #mbscNumpad="mobiscroll"></div>
+      <div class="mbsc-btn-group-block">
+        <mbsc-button>Valida importo</mbsc-button>
+      </div>
+  </mbsc-form>
+  </ion-row>
+
+  <ion-row >
+    <ion-col>
+      <button ion-button class="submit-btn" full (click)="salva()">Salva Saldo</button>
+    </ion-col>
+  </ion-row>
 
 </ion-content>
 
