@@ -49,19 +49,18 @@
     <ion-datetime displayFormat="DD-MM-YYYY HH:mm" [(ngModel)]="today"></ion-datetime>
   </ion-item>
 
-  <ion-row >
-  <mbsc-form [options]="formSettings" class="md-stepper-np">
-      <div class="mbsc-form-group-inset">
-        <div>
-          <input type="number" data-role="stepper" [(ngModel)]="price" min="10" max="120" step="10" (click)="mbscNumpad.instance.show()" readonly />
-        </div>
-      </div>
-      <div class="md-numpad" mbsc-numpad [mbsc-options]="numpadSettings" [(ngModel)]="price" #mbscNumpad="mobiscroll"></div>
-      <div class="mbsc-btn-group-block">
-        <mbsc-button>Valida importo</mbsc-button>
-      </div>
-  </mbsc-form>
-  </ion-row>
+    <form [formGroup]="formTest">
+      <ion-list>
+        <!--the selector ion-currency-mask already has an ion-item themselves-->
+        <ion-currency-mask [(ngModel)]="price"
+          placeholder="Inserire importo"
+          label="€"
+          formControlName="maskMoney">
+        </ion-currency-mask>
+        <ion-item>
+        </ion-item>
+      </ion-list>
+    </form>
 
   <ion-row >
     <ion-col>

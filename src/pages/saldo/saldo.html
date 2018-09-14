@@ -8,6 +8,66 @@
 </ion-header>
 
 <ion-content padding>
+  <div id="loginNotificationsCenter-container1" class="jumbotron">
+    <h6 id="loginNotificationsCenter-heading1" style="color:#000000;text-align:center;">Visualizza il tuo saldo</h6>
+  </div>
+
+  <ion-item>
+    <ion-label color="primary">Tipo</ion-label>
+    <ion-select [(ngModel)]="tipo" placeholder="Seleziona" (ionChange)="onChangeSelection(tipo)">
+      <ion-option value="settimanale">SETTIMANALE</ion-option>
+      <ion-option value="giornaliero">GIORNALIERO</ion-option>
+    </ion-select>
+  </ion-item>
+
+  <div class="form-group" id="giornaliero" style="display: none">
+    <button ion-button block (click)="openCalendar1()">Scegli Giorno</button>
+  </div>
+
+  <div class="form-group" id="settimanale" style="display: none">
+
+    <button ion-button block (click)="openCalendar()">Scegli Settimana</button>
+
+  </div>
+
+  <h6>Prima Nota Del Giorno: {{saldDate}}</h6>
+
+  <ion-card>
+
+    <ion-card-header>
+      USCITE
+    </ion-card-header>
+
+    <ion-card-content>
+      {{"€ "+uscite}}
+    </ion-card-content>
+
+  </ion-card>
+
+  <ion-card>
+
+    <ion-card-header>
+      ENTRATE
+    </ion-card-header>
+
+    <ion-card-content>
+      {{"€ "+entrate}}
+    </ion-card-content>
+
+  </ion-card>
+
+  <ion-card>
+
+    <ion-card-header>
+      SALDO
+    </ion-card-header>
+
+    <ion-card-content>
+      {{"€ "+saldo}}
+    </ion-card-content>
+
+  </ion-card>
+
 
 </ion-content>
 

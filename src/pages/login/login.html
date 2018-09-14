@@ -1,11 +1,14 @@
 
 <ion-content padding >
   <ion-list>
-  <div id="loginNotificationsCenter-container1" class="jumbotron">
-    <h1 id="loginNotificationsCenter-heading1" style="color:#000000;text-align:center;">Login -  GestGenSuite</h1>
+  <div >
+    <h1 style="color:#000000;text-align:center;">Autenticazione</h1>
   </div>
   <div>
     <img src="../../assets/imgs/logo.png" style="display: block; width: 50%; height: auto; margin-left: auto; margin-right: auto;">
+  </div>
+  <div >
+      <h1 style="color:#000000;text-align:center;">GestGenSuite</h1>
   </div>
   </ion-list>
   <ion-list>
@@ -23,7 +26,7 @@
 
     <ion-item no-lines>
       <ion-label>Amministratore</ion-label>
-      <ion-toggle checked="true" [(ngModel)]="admin"></ion-toggle>
+      <ion-toggle checked="true" color="secondary" [(ngModel)]="admin"></ion-toggle>
     </ion-item>
 
 
@@ -31,7 +34,7 @@
 
     <ion-row >
       <ion-col>
-        <button ion-button class="submit-btn" full (click)="login()">Login</button>
+        <button ion-button round color="secondary" class="submit-btn" block (click)="login()">Login</button>
       </ion-col>
     </ion-row>
 </ion-content>

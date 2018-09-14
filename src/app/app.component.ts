@@ -8,8 +8,6 @@ import { HomePage } from '../pages/home/home';
 import { SaldoPage } from '../pages/saldo/saldo';
 import { InserimentoPage } from '../pages/inserimento/inserimento';
 import { LoginPage } from "../pages/login/login";
-import { StatistichePage } from "../pages/statistiche/statistiche";
-
 
 @Component({
   templateUrl: 'app.html'
@@ -29,7 +27,6 @@ export class MyApp {
       { title: 'Home', component: HomePage },
       { title: 'Saldo', component: SaldoPage },
       { title: 'Inserimento', component: InserimentoPage },
-      { title: 'Statistiche', component: StatistichePage },
       { title: 'Log out', component: LoginPage }
     ];
 
@@ -48,23 +45,39 @@ export class MyApp {
 
     let retrievedObj = JSON.parse(localStorage.getItem('storedData'));
     console.log(retrievedObj.tipo);
+    console.log(page.title);
 
-    if((page.title==="Saldo" || page.title==="Statistiche") && (retrievedObj.tipo===false)){
-
-      console.log(retrievedObj);
-
-      let alert = this.alertCtrl.create({
-        title: 'Accesso Negato',
-        subTitle: 'Non hai i permessi per consultare questa pagina!',
-        buttons: ['OK']
-      });
-      alert.present();
-
+    if(page.title==="Home") {
       this.app.getRootNav().setRoot(HomePage);
-
-    }else{
-      this.nav.setRoot(page.component);
     }
+
+    if(page.title==="Inserimento") {
+      this.app.getRootNav().setRoot(InserimentoPage);
+    }
+
+
+    if(page.title==="Saldo") {
+
+      if(retrievedObj.tipo===false){
+        let alert = this.alertCtrl.create({
+          title: 'Accesso Negato',
+          subTitle: 'Non hai i permessi per consultare questa pagina!',
+          buttons: ['OK']
+        });
+        alert.present();
+
+        this.app.getRootNav().setRoot(HomePage);
+      }
+
+      if(retrievedObj.tipo===true){
+
+        this.nav.setRoot(page.component);
+
+      }
+
+    }
+
+
 
     if(page.title==="Log out"){
       let alert = this.alertCtrl.create({
@@ -74,11 +87,6 @@ export class MyApp {
       });
       alert.present();
       this.app.getRootNav().setRoot(LoginPage);
-    }
-    else{
-      // Reset the content nav to have just this page
-      // we wouldn't want the back button to show in this scenario
-      this.nav.setRoot(page.component);
     }
 
   }

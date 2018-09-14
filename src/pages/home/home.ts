@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {MenuController, NavController} from 'ionic-angular';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {DomSanitizer, SafeUrl} from "@angular/platform-browser";
 
 @Component({
   selector: 'page-home',
@@ -17,7 +18,7 @@ export class HomePage {
   public recapito;
 
 
-  constructor(public navCtrl: NavController, public menuCtrl: MenuController, public http:HttpClient) {
+  constructor(public navCtrl: NavController, public menuCtrl: MenuController, public http:HttpClient,private sanitizer: DomSanitizer) {
 
     let retrievedObj = JSON.parse(localStorage.getItem('storedData'));
 
@@ -55,6 +56,10 @@ export class HomePage {
           console.log('Status: ' + err.status);
         });
 
+  }
+
+  getImgContent(): SafeUrl {
+    return this.sanitizer.bypassSecurityTrustUrl(this.image);
   }
 
 }

@@ -1,13 +1,10 @@
 import { Component } from '@angular/core';
 import {AlertController, MenuController, NavController} from 'ionic-angular';
-import { mobiscroll } from '@mobiscroll/angular';
 import {HomePage} from "../home/home";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import { Camera } from '@ionic-native/camera';
+import {FormBuilder, Validators} from "@angular/forms";
 
-mobiscroll.settings = {
-  theme: 'ios'
-};
 
 @Component({
   selector: 'page-inserimento',
@@ -23,30 +20,24 @@ export class InserimentoPage {
   public today;
   public price;
   public foto;
-  numpadSettings: any = {
-    preset: 'decimal',
-    min: 1,
-    max: 500000,
-    prefix: '€'
-  };
 
-  public imageURL;
+  public formTest;
 
 
-  constructor(public navCtrl: NavController, public menuCtrl: MenuController, public http:HttpClient, public alertCtrl: AlertController,public camera: Camera) {
+
+  constructor(public navCtrl: NavController, public menuCtrl: MenuController, public http:HttpClient, public alertCtrl: AlertController,public camera: Camera,private formBuilder: FormBuilder) {
 
     this.price = 0;
+
+    this.formTest = formBuilder.group({
+      maskMoney: ['', Validators.required]
+    });
 
     this.today = new Date().toISOString();
 
     this.retrievedObj = JSON.parse(localStorage.getItem('storedData'));
 
-
-      if (this.retrievedObj.tipo === false) {
-        this.navCtrl.setRoot(HomePage);
-      }
-
-      this.menuCtrl.enable(true, 'myMenu');
+    this.menuCtrl.enable(true, 'myMenu');
   }
 
   /*takePhoto(){
