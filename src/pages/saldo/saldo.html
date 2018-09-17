@@ -13,20 +13,27 @@
   </div>
 
   <ion-item>
-    <ion-label color="primary">Tipo</ion-label>
+    <ion-label color="secondary">Tipo</ion-label>
     <ion-select [(ngModel)]="tipo" placeholder="Seleziona" (ionChange)="onChangeSelection(tipo)">
-      <ion-option value="settimanale">SETTIMANALE</ion-option>
+      <ion-option value="settimanale">PERIODO</ion-option>
       <ion-option value="giornaliero">GIORNALIERO</ion-option>
     </ion-select>
   </ion-item>
 
+  <ion-item>
+    <ion-label color="secondary">Cliente</ion-label>
+    <ion-select [(ngModel)]="cliente" placeholder="Seleziona">
+      <ion-option *ngFor="let key of modeKeys" [value]="key.value">{{key.text}}</ion-option>
+    </ion-select>
+  </ion-item>
+
   <div class="form-group" id="giornaliero" style="display: none">
-    <button ion-button block (click)="openCalendar1()">Scegli Giorno</button>
+    <button ion-button round color="secondary" block (click)="openCalendar1()">Scegli Giorno</button>
   </div>
 
   <div class="form-group" id="settimanale" style="display: none">
 
-    <button ion-button block (click)="openCalendar()">Scegli Settimana</button>
+    <button ion-button round color="secondary" block (click)="openCalendar()">Scegli Settimana</button>
 
   </div>
 
@@ -38,7 +45,7 @@
       USCITE
     </ion-card-header>
 
-    <ion-card-content>
+    <ion-card-content color="danger">
       {{"€ "+uscite}}
     </ion-card-content>
 
@@ -50,7 +57,7 @@
       ENTRATE
     </ion-card-header>
 
-    <ion-card-content>
+    <ion-card-content color="secondary">
       {{"€ "+entrate}}
     </ion-card-content>
 
@@ -67,6 +74,16 @@
     </ion-card-content>
 
   </ion-card>
+
+  <div class="form-group" id="giornaliero1" style="display: none">
+    <button ion-button round color="secondary" block (click)="openDettaglio1()">Dettaglio</button>
+  </div>
+
+  <div class="form-group" id="settimanale1" style="display: none">
+
+    <button ion-button round color="secondary" block (click)="openDettaglio()">Dettaglio</button>
+
+  </div>
 
 
 </ion-content>
